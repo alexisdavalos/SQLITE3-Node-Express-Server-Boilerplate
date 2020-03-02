@@ -80,6 +80,10 @@
             seeds: { 
                 directory: './database/seeds' 
             },
+             pool: { //Add foreign keys enforcement when using SQLite
+            afterCreate: (conn, done) => {
+                conn.run("PRAGMA foreign_keys = ON", done);
+            },
         };
     module.exports = {
         development: {
